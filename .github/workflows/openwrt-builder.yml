@@ -18,7 +18,7 @@ on:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt.git
-  REPO_BRANCH: openwrt-23.05
+  REPO_BRANCH: v23.05.4
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   DIY_P1_SH: diy-part1.sh
@@ -77,6 +77,7 @@ jobs:
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x $DIY_P2_SH
         cd openwrt
+        sed -i 's/set wireless.${name}.disabled=1/set wireless.${name}.disabled=0/' package/kernel/mac80211/files/lib/wifi/mac80211.sh
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
     - name: Download package
