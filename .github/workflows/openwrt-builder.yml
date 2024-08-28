@@ -78,6 +78,7 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         sed -i 's/set wireless.${name}.disabled=1/set wireless.${name}.disabled=0/' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+        sed -i 's/UTC/Asia\/Shanghai/g' package/base-files/files/bin/config_generate
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
     - name: Download package
@@ -146,17 +147,17 @@ jobs:
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
 
-    - name: Delete workflow runs
-      uses: Mattraks/delete-workflow-runs@main
-      with:
-        retain_days: 0
-        keep_minimum_runs: 2
+    # - name: Delete workflow runs
+    #   uses: Mattraks/delete-workflow-runs@main
+    #   with:
+    #     retain_days: 0
+    #     keep_minimum_runs: 2
 
-    - name: Remove old Releases
-      uses: dev-drprasad/delete-older-releases@master
-      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
-      with:
-        keep_latest: 3
-        delete_tags: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.OPENWRT_AUTOBUILE_TOKEN }}
+    # - name: Remove old Releases
+    #   uses: dev-drprasad/delete-older-releases@master
+    #   if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+    #   with:
+    #     keep_latest: 3
+    #     delete_tags: true
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.OPENWRT_AUTOBUILE_TOKEN }}
