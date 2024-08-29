@@ -77,10 +77,10 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
-        sed -i 's/set wireless.${name}.disabled=1/set wireless.${name}.disabled=0/' package/kernel/mac80211/files/lib/wifi/mac80211.sh
-        echo 03ba5b5fee47f2232a088e3cd9832aec >> .vermagic
-        sed -i '/vermagic/s/.*/  cp $(TOPDIR)\/vermagic $(LINUX_DIR)\/.vermagic/' include/kernel-defaults.mk
-        sed -i '/md5/s/.*/  STAMP_BUILT:=$(STAMP_BUILT)_$(shell cat $(LINUX_DIR)\/.vermagic)/' package/kernel/linux/Makefile
+        # sed -i 's/set wireless.${name}.disabled=1/set wireless.${name}.disabled=0/' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+        # echo 03ba5b5fee47f2232a088e3cd9832aec >> .vermagic
+        # sed -i '/vermagic/s/.*/  cp $(TOPDIR)\/vermagic $(LINUX_DIR)\/.vermagic/' include/kernel-defaults.mk
+        # sed -i '/md5/s/.*/  STAMP_BUILT:=$(STAMP_BUILT)_$(shell cat $(LINUX_DIR)\/.vermagic)/' package/kernel/linux/Makefile
 
     - name: Download package
       id: package
