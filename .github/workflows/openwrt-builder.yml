@@ -91,12 +91,6 @@ jobs:
       id: compile
       run: |
         cd openwrt
-        # 修改kernel内核校验值
-        [-e .vermagic] && cat .vermagic
-        echo 03ba5b5fee47f2232a088e3cd9832aec >> .vermagic
-        cat .vermagic
-        sed -i '/vermagic/s/.*/  cp $(TOPDIR)\/vermagic $(LINUX_DIR)\/.vermagic/' include/kernel-defaults.mk
-        sed -i '/md5/s/.*/  STAMP_BUILT:=$(STAMP_BUILT)_$(shell cat $(LINUX_DIR)\/.vermagic)/' package/kernel/linux/Makefile
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
