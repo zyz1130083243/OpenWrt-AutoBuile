@@ -33,5 +33,5 @@ sed -i 's/set wireless.${name}.disabled=1/set wireless.${name}.disabled=0/' pack
 sed -i  's/downloads.openwrt.org\/releases\/23.05-SNAPSHOT/archive.openwrt.org\/releases\/23.05.4/'  include/version.mk
 
 # 修改默认时区
-sed -i "s/set system.@system\[-1\].timezone=.*$/set system.@system[-1].timezone='CST-8'/"  /package/base-files/files/bin/config_generate
-sed -i "/set system.@system\[-1\].timezone=/a set system.@system[-1].zonename='Asia/Shanghai'"  /package/base-files/files/bin/config_generate
+sed -i "s/set system.@system\[-1\].timezone=.*$/set system.@system[-1].timezone='CST-8'/"  package/base-files/files/bin/config_generate
+sed -i "/set system.@system\[-1\].timezone=/a set system.@system[-1].zonename='Asia/Shanghai'"  package/base-files/files/bin/config_generate
